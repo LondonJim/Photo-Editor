@@ -10,23 +10,26 @@
   <body>
     <div class="container">
       <div class="column">
-        <img id="SourceImage" src="./img/tree-path.jpg">
+        <img id="SourceImage" src="">
       </div>
       <div class="column">
           <canvas id="Canvas"></canvas>
       </div>
     </div>
     <div class="selector">
-      <label for="file-upload" class="custom-file-upload">
+      <label for="file-upload" class="custom-button">
         SELECT FILE
       </label>
-      <input id="file-upload" type='file' size="60" onchange="canvas.onFileSelected(this)"/>
+      <input id="file-upload" type='file' onchange="canvas.onFileSelected(this)"/>
+      <label for="change-color" class="custom-button">
+        INVERT COLOR
+      </label>
+      <input id="change-color" type='button' onclick="canvas.invertImage()"/>
     </div>
 
     <script>
       window.addEventListener('load', function(){
         canvas = new Canvas
-        canvas.drawImage()
       });
     </script>
   </body>

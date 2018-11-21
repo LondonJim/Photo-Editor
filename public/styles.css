@@ -27,7 +27,7 @@ body {
   justify-content: center;
 }
 
-.custom-file-upload {
+.custom-button {
   background-color: #DCD0C0;
   color: black;
   padding: 10px 20px;
@@ -43,10 +43,14 @@ body {
   transition: 0.3s;
 }
 
-.custom-file-upload:hover {
+.custom-button:hover {
   opacity: 1;
 }
 
 input[type="file"] {
+    display: none;
+}
+
+input[type="button"] {
     display: none;
 }
