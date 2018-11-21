@@ -1,0 +1,22 @@
+{
+  "name": "photo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "test": "cypress open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LondonJim/Photo-Editor.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LondonJim/Photo-Editor/issues"
+  },
+  "homepage": "https://github.com/LondonJim/Photo-Editor#readme",
+  "devDependencies": {
+    "cypress": "^3.1.2"
+  }
+}
