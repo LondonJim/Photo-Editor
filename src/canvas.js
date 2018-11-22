@@ -6,6 +6,11 @@ class Canvas {
     this.context = this.canvas.getContext('2d')
     this.canvas.width = 1
     this.canvas.height = 1
+
+    this.brightnessValue = 0
+    this.isInverted = false
+
+    this.events()
   }
 
   drawImageToCanvas() {
@@ -33,12 +38,42 @@ class Canvas {
   }
 
   invertImage() {
+    if (this.isInverted) {
+      var imageData = this.context.getImageData(0, 0, this.canvas.width, this.canvas.height)
+      for (var i = 0; i < imageData.data.length; i+=4) {
+        imageData.data[i] = imageData.data[i] ^ 255
+        imageData.data[i+1] = imageData.data[i+1] ^ 255
+        imageData.data[i+2] = imageData.data[i+2] ^ 255
+      }
+      this.context.putImageData(imageData, 0, 0)
+    }
+  }
+
+  brightness(value) {
     var imageData = this.context.getImageData(0, 0, this.canvas.width, this.canvas.height)
     for (var i = 0; i < imageData.data.length; i+=4) {
-      imageData.data[i] = imageData.data[i] ^ 255
-      imageData.data[i+1] = imageData.data[i+1] ^ 255
-      imageData.data[i+2] = imageData.data[i+2] ^ 255
+      imageData.data[i] += 255 * (value / 100)
+      imageData.data[i+1] += 255 * (value / 100)
+      imageData.data[i+2] += 255 * (value / 100)
     }
     this.context.putImageData(imageData, 0, 0)
+  }
+
+  events() {
+    document.getElementById('invert').addEventListener("click", function() {
+      this.isInverted ? this.isInverted = false : this.isInverted = true
+      this.filters()
+    }.bind(this))
+    document.getElementById('brightness').addEventListener("click", function() {
+      this.brightnessValue = document.getElementById('brightness').value
+      this.filters()
+    }.bind(this))
+
+  }
+
+  filters() {
+    this.context.drawImage(this.image, 0, 0);
+    this.invertImage()
+    this.brightness(this.brightnessValue)
   }
 }

@@ -21,10 +21,18 @@
         SELECT FILE
       </label>
       <input id="file-upload" type='file' onchange="canvas.onFileSelected(this)"/>
-      <label for="change-color" class="custom-button">
+      <label for="invert" class="custom-button">
         INVERT COLOR
       </label>
-      <input id="change-color" type='button' onclick="canvas.invertImage()"/>
+      <input id="invert" type='button'/>
+      <label for="brightness" class="custom-button">
+        BRIGHTNESS
+      <input id="brightness" type='range' value="0" min="-100" max="100"/>
+      </label>
+      <label for="contrast" class="custom-button">
+        CONTRAST
+      <input id="contrast" type='range' value="0" min="-100" max="100"/>
+      </label>
     </div>
 
     <script>
