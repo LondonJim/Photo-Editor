@@ -8,6 +8,7 @@ class Canvas {
     this.canvas.height = 1
 
     this.brightnessValue = 0
+    this.contrastValue = 0
     this.isInverted = false
 
     this.events()
@@ -59,6 +60,18 @@ class Canvas {
     this.context.putImageData(imageData, 0, 0)
   }
 
+  contrast(value) {
+    var imageData = this.context.getImageData(0, 0, this.canvas.width, this.canvas.height)
+    value = (value/100) + 1
+    var intercept = 255*(-value/2 + 0.5)
+    for(var i=0;i<imageData.data.length;i+=4){
+      imageData.data[i] = imageData.data[i]*value + intercept;
+      imageData.data[i+1] = imageData.data[i+1]*value + intercept;
+      imageData.data[i+2] = imageData.data[i+2]*value + intercept;
+    }
+    this.context.putImageData(imageData, 0, 0)
+  }
+
   events() {
     document.getElementById('invert').addEventListener("click", function() {
       this.isInverted ? this.isInverted = false : this.isInverted = true
@@ -68,12 +81,17 @@ class Canvas {
       this.brightnessValue = document.getElementById('brightness').value
       this.filters()
     }.bind(this))
-
+    document.getElementById('contrast').addEventListener("click", function() {
+      this.contrastValue = document.getElementById('contrast').value
+      this.filters()
+    }.bind(this))
   }
 
   filters() {
     this.context.drawImage(this.image, 0, 0);
     this.invertImage()
+    this.contrast(this.contrastValue)
     this.brightness(this.brightnessValue)
+    console.log(this.contrastValue)
   }
 }
