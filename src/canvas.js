@@ -7,11 +7,16 @@ class Canvas {
     this.canvas.width = 1
     this.canvas.height = 1
 
+    this.resetValues()
+    this.events()
+  }
+
+  resetValues() {
+    document.getElementById('brightness').value = 0
+    document.getElementById('contrast').value = 0
     this.brightnessValue = 0
     this.contrastValue = 0
     this.isInverted = false
-
-    this.events()
   }
 
   drawImageToCanvas() {
@@ -23,6 +28,7 @@ class Canvas {
   }
 
   onFileSelected(event) {
+    this.resetValues()
     var selectedFile = event.files[0]
     var reader = new FileReader()
 
@@ -73,6 +79,10 @@ class Canvas {
   }
 
   events() {
+    document.getElementById('reset').addEventListener("click", function() {
+      this.resetValues()
+      this.filters()
+    }.bind(this))
     document.getElementById('invert').addEventListener("click", function() {
       this.isInverted ? this.isInverted = false : this.isInverted = true
       this.filters()
@@ -88,10 +98,9 @@ class Canvas {
   }
 
   filters() {
-    this.context.drawImage(this.image, 0, 0);
+    this.context.drawImage(this.image, 0, 0)
     this.invertImage()
     this.contrast(this.contrastValue)
     this.brightness(this.brightnessValue)
-    console.log(this.contrastValue)
   }
 }

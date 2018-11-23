@@ -9,12 +9,13 @@ body {
 }
 
 .column {
-  padding: 5px;
+  padding: 0px;
 }
 
 #SourceImage {
   width: 100%;
   height: auto;
+  display: none;
 }
 
 #Canvas {
@@ -22,7 +23,12 @@ body {
   height: auto;
 }
 
-.selector {
+.top-row {
+  display: flex;
+  justify-content: center;
+}
+
+.middle-row {
   display: flex;
   justify-content: center;
 }
