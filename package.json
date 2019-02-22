@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/LondonJim/Photo-Editor#readme",
   "devDependencies": {
-    "cypress": "^3.1.2"
+    "cypress": "^3.1.5"
   }
 }
